@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --builder-background: #f7f8fb;
+  --builder-surface: #ffffff;
+  --builder-surface-subtle: #f1f5f9;
+  --builder-border: rgba(15, 23, 42, 0.08);
+  --builder-heading-color: #0f172a;
+  --builder-text-primary: #1e293b;
+  --builder-text-muted: rgba(15, 23, 42, 0.7);
+  --builder-primary: #6366f1;
+  --builder-primary-soft: rgba(99, 102, 241, 0.14);
+  --builder-focus-ring: 0 0 0 3px rgba(99, 102, 241, 0.35);
+}
+
+.dark {
+  color-scheme: dark;
+  --builder-background: #020617;
+  --builder-surface: #0f172a;
+  --builder-surface-subtle: #111a2e;
+  --builder-border: rgba(148, 163, 184, 0.12);
+  --builder-heading-color: #e2e8f0;
+  --builder-text-primary: #cbd5f5;
+  --builder-text-muted: rgba(148, 163, 184, 0.85);
+  --builder-primary: #818cf8;
+  --builder-primary-soft: rgba(99, 102, 241, 0.22);
+  --builder-focus-ring: 0 0 0 3px rgba(129, 140, 248, 0.5);
+}
+
+body {
+  @apply min-h-screen bg-[var(--builder-background)] font-sans antialiased;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+  color: #0f172a;
+}
+
+.dark ::selection {
+  color: #0f172a;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--builder-focus-ring);
+  border-radius: 8px;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold text-slate-900 dark:text-slate-50;
+  }
+
+  p {
+    @apply text-slate-600 dark:text-slate-300;
+  }
+
+  button,
+  [role="button"] {
+    @apply focus-visible:outline-none;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply flex flex-col gap-4 rounded-2xl border border-[var(--builder-border)] bg-[var(--builder-surface)] p-4 shadow-sm backdrop-blur;
+  }
+
+  .divider {
+    @apply h-px bg-[var(--builder-border)];
+  }
+
+  .control-label {
+    @apply text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scroll-y-soft {
+    @apply overflow-y-auto;
+    scrollbar-width: thin;
+  }
+
+  .scroll-y-soft::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scroll-y-soft::-webkit-scrollbar-thumb {
+    background-color: rgba(148, 163, 184, 0.35);
+    border-radius: 999px;
+  }
+
+  .scroll-y-soft::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
